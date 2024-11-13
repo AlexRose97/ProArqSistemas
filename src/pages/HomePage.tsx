@@ -5,71 +5,45 @@ import {
     Box,
     Container,
     Typography,
-    Stack,
-    Paper
+    Stack
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-const HeroBox = styled(Box)(({ theme }) => ({
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')`,
-    height: '500px',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#fff',
-    fontSize: '4rem',
-    [theme.breakpoints.down('sm')]: {
-        height: 300,
-        fontSize: '3em'
-    },
-    textAlign: "center"
-}));
 
 const BlogContainer = styled(Container)(({ theme }) => ({
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(10)
 }));
 
-const BlogTitle = styled(Typography)(({ theme }) => ({
-    fontWeight: 800,
-    paddingBottom: theme.spacing(3)
-}));
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    ...theme.applyStyles('dark', {
-        backgroundColor: '#1A2027',
-    }),
-}));
+const TitleContainer = styled(Box)({
+    padding: "16px 24px",
+    // backgroundColor: "rgba(230, 230, 230, 0.4)", // Fondo gris suave y transparente
+    borderRadius: "8px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Sombra sutil
+    textAlign: "center",
+});
+
+const TitleText = styled(Typography)({
+    color: "#333", // Gris oscuro para buena visibilidad
+    textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)", // Sombra sutil en el texto
+    lineHeight: 1.2,
+});
 export const HomePage = () => {
     return (
-        <Container>
+        <Container maxWidth="xl">
             <Stack>
-                {/* <StyledAppBar>
-                    <Toolbar>
-                        <Typography variant="h6" color="primary" >
-                            Blog
-                        </Typography>
-                    </Toolbar>
-                </StyledAppBar> */}
-                <HeroBox>
-                    <Box>Propuesta de Mejora para el Pensum de Ingeniería en Sistemas</Box>
-                </HeroBox>
-                <BlogContainer maxWidth="lg">
-                    <BlogTitle variant="h4">
-                        CURSOS
-                    </BlogTitle>
+                <TitleContainer>
+                    <TitleText variant="h2">
+                        Propuesta de Mejora para el Pensum de Ingeniería en Sistemas
+                    </TitleText>
+                </TitleContainer>
+                <BlogContainer>
+                    <TitleText variant="h4" gutterBottom>
+                        Cursos
+                    </TitleText>
                     <Grid container spacing={3}>
                         {subjectsData.map((subject) => (
-                            <Grid size={{ xs: 12, md: 6, sm: 4 }}  key={Number(subject.code)} >
-                                <Item>
-                                    <SubjectCard subject={subject} />
-                                </Item>
+                            <Grid size={{ xs: 12, md: 6, sm: 6, lg: 4, xl: 3 }} key={Number(subject.code)}>
+                                <SubjectCard subject={subject} />
                             </Grid>
                         ))}
                     </Grid>
